@@ -1,25 +1,25 @@
 import { Star } from "lucide-react";
+import { Link } from "react-router";
 
 const BookCard = ({ eachBook }) => {
-  const { bookName, image, author, category, rating, tags } = eachBook;
+  
+  const { bookName, image, author, category, rating, tags, bookId } = eachBook;
 
   return (
-    <div>
-      <div className="card bg-base-100 shadow-sm">
+
+      <Link to={`/booksDetails/${bookId}`} className="card bg-base-100 shadow-sm">
         <figure className="p-6 rounded-xl bg-base-300">
           <img src={image} className="rounded-xl h-62.5" />
         </figure>
         <div className="card-actions justify-start">
           {tags.map((eachTag, index) => {
             return (
-              <>
                 <div
                   className="badge badge-outline bg-green-100 text-green-500 font-bold"
                   key={index}
                 >
                   {eachTag}
                 </div>
-              </>
             );
           })}
         </div>
@@ -34,9 +34,8 @@ const BookCard = ({ eachBook }) => {
             <p>{rating}</p>
             <Star />
           </div>
-        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

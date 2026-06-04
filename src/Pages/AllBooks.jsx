@@ -6,8 +6,8 @@ const booksPromise = fetch("/booksData.json").then((res) => res.json());
 
 const AllBooks = () => {
   const books = use(booksPromise);
-
   // console.log(books)//array of objects(each object is a book)
+  
   return (
     <div className="container mx-auto">
 
