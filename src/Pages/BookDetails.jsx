@@ -23,8 +23,8 @@ const BookDetails = () => {
   // console.log("expected book", expectedBook); //returns the element(object of a book) that matches the condition
 
   if (!expectedBook) {
-  return <p>Book not found</p>;
-}
+    return <p>Book not found</p>;
+  }
 
   //deconstructing the expectedBook object
   const {
@@ -40,14 +40,13 @@ const BookDetails = () => {
     category,
   } = expectedBook;
 
+  //declaring the useContext function to invoke BookContext
+  const bookContext = useContext(BookContext);
+  console.log(bookContext);
+  //the bookContext obj stores state variable, setter function and the event handling function. now deconstructing -
+  const { handleMarkAsRead, handleWishList } = bookContext;
 
-//declaring the useContext function to invoke BookContext
-const bookContext = useContext(BookContext)
-console.log(bookContext)
-//the bookContext obj stores state variable, setter function and the event handling function. now deconstructing -
-const {handleMarkAsRead} = bookContext;
-
-// moving the state and event handling function from here to the BookContext.jsx file within the BookProvider component.
+  // moving the state and event handling function from here to the BookContext.jsx file within the BookProvider component.
 
   return (
     <div>
@@ -83,10 +82,18 @@ const {handleMarkAsRead} = bookContext;
           <p>Year of Publishing : {yearOfPublishing}</p>
           <p>Rating : {rating}</p>
           <div className="card-actions">
-            <button className="btn btn-soft" 
-            onClick={()=> handleMarkAsRead(expectedBook)}
-            >Mark As Read</button>
-            <button className="btn btn-primary">Wishlist</button>
+            <button
+              className="btn btn-soft"
+              onClick={() => handleMarkAsRead(expectedBook)}
+            >
+              Mark As Read
+            </button>
+            <button
+              className="btn btn-primary"
+              onClick={() => handleWishList(expectedBook)}
+            >
+              Add To Wishlist
+            </button>
           </div>
         </div>
       </div>
